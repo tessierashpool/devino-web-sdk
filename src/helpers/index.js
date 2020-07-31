@@ -1,7 +1,8 @@
 import { getVariables } from '../common';
-const { BASE_URL, API_KEY, APP_ID } = getVariables();
 
 export const fetchFactory = (url, settings = {}) => {
+  const { BASE_URL, API_KEY, APP_ID } = getVariables();
+
   return fetch(`${BASE_URL}${url}`, {
     credentials: 'include',
     ...settings,
