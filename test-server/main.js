@@ -13,7 +13,10 @@ app.get('/', (req, res) => {
 });
 
 app.put('/customers/data', (req, res) => {
-  res.json({ url: '/customers/data', body: req.body, headers: req.headers });
+  // res.json({ url: '/customers/data', body: req.body, headers: req.headers });
+  res.status(400).send({
+    message: 'This is an error!',
+  });
 });
 
 app.put('/customers/subscription', (req, res) => {
@@ -21,10 +24,7 @@ app.put('/customers/subscription', (req, res) => {
 });
 
 app.post('/users/event', (req, res) => {
-  // res.json({ url: '/users/event', body: req.body, headers: req.headers });
-  res.status(400).send({
-    message: 'This is an error!',
-  });
+  res.json({ url: '/users/event', body: req.body, headers: req.headers });
 });
 
 app.listen(3000, () => {

@@ -34,3 +34,23 @@ export const urlBase64ToUint8Array = (base64String) => {
   }
   return outputArray;
 };
+
+export const onURLChange = (() => {
+  let currentURL = window.location.href;
+  let oldURL = currentURL;
+  const callbacks = [];
+
+  setInterval(function () {
+    currentURL = window.location.href;
+    if (currentURL !== oldURL) {
+      callbacks.forEach((cb) => {
+        cb(currentURL);
+      });
+      oldURL = currentURL;
+    }
+  }, 500);
+
+  return (cb) => {
+    callbacks.push(cb);
+  };
+})();
