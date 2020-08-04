@@ -5,6 +5,8 @@ let API_KEY = '';
 let APP_ID = '';
 let BASE_URL = process.env.BASE_URL;
 const EMAIL_URL_MARKER = 'email_marker';
+let IS_EMAIL_WATCHED = false;
+let IS_SERVICE_WORKER = false;
 
 /**
  * Initialize basic configuration
@@ -12,11 +14,16 @@ const EMAIL_URL_MARKER = 'email_marker';
  * @param {string} apiKey - API Key
  * @param {string} appId - App ID
  */
-export const init = ({ apiKey, appId, baseUrl }) => {
+export const init = ({ apiKey, appId, baseUrl, isServiceWorker = false }) => {
   API_KEY = apiKey;
   APP_ID = appId;
+  IS_SERVICE_WORKER = isServiceWorker;
   baseUrl && (BASE_URL = baseUrl);
-  watchEmailMarkerInUrl();
+
+  if (!IS_EMAIL_WATCHED && !IS_SERVICE_WORKER) {
+    sendEventIfUrlHasMarker(window.location.href);
+    IS_EMAIL_WATCHED = true;
+  }
 };
 
 /**
