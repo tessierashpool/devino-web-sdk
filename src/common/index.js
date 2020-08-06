@@ -24,6 +24,7 @@ export const init = ({ apiKey, appId, baseUrl, isServiceWorker = false }) => {
     sendEventIfUrlHasMarker(window.location.href);
     IS_EMAIL_WATCHED = true;
   }
+  console.log('Hello 1111');
 };
 
 /**
