@@ -1,6 +1,6 @@
 {
   "name": "test-d-web-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Devino web SDK",
   "main": "./dist/devino-web-sdk.js",
   "files": [
