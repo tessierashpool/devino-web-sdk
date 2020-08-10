@@ -9,7 +9,7 @@ module.exports = (env) => {
 
   const config = {
     mode: 'production',
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
       filename: 'devino-web-sdk.js',
       path: path.resolve(__dirname, 'dist'),
@@ -19,6 +19,11 @@ module.exports = (env) => {
     module: {
       rules: [
         {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
+        {
           test: /\.js?$/,
           exclude: /(node_modules)/,
           include: path.resolve(__dirname, 'src'),
@@ -27,6 +32,9 @@ module.exports = (env) => {
           },
         },
       ],
+    },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
       new CleanWebpackPlugin(),

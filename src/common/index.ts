@@ -1,5 +1,6 @@
-import { onURLChange } from '../helpers';
-import { sendEvent } from '../triggers';
+import { onURLChange } from '../helpers/index';
+import { sendEvent } from '../triggers/index';
+import { InitParams } from '../types';
 
 let API_KEY = '';
 let APP_ID = '';
@@ -14,7 +15,7 @@ let IS_SERVICE_WORKER = false;
  * @param {string} apiKey - API Key
  * @param {string} appId - App ID
  */
-export const init = ({ apiKey, appId, baseUrl, isServiceWorker = false }) => {
+export const init = ({ apiKey, appId, baseUrl, isServiceWorker = false }: InitParams) => {
   API_KEY = apiKey;
   APP_ID = appId;
   IS_SERVICE_WORKER = isServiceWorker;
@@ -52,7 +53,7 @@ const watchEmailMarkerInUrl = () => {
  *
  * @param {string} url - url to check marker
  */
-const sendEventIfUrlHasMarker = (url) => {
+const sendEventIfUrlHasMarker = (url: string) => {
   if (new RegExp(EMAIL_URL_MARKER).test(url)) {
     sendEvent({ eventName: 'EMAIL_LINK', eventData: { url } });
   }
