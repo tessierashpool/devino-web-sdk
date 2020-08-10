@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env) => {
-  const BASE_URL = env && env.BASE_URL ? env.BASE_URL : 'http://localhost:3000';
+  const BASE_URL = env && env.BASE_URL ? env.BASE_URL : 'http://kube.devinotest.local:31404';
   const IS_DEV = env && env.dev;
 
   const config = {
