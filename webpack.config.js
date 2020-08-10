@@ -4,12 +4,12 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env) => {
-  const BASE_URL = env && env.BASE_URL ? env.BASE_URL : 'http://localhost:3000';
+  const BASE_URL = env && env.BASE_URL ? env.BASE_URL : 'http://kube.devinotest.local:31404';
   const IS_DEV = env && env.dev;
 
   const config = {
     mode: 'production',
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
       filename: 'devino-web-sdk.js',
       path: path.resolve(__dirname, 'dist'),
@@ -19,6 +19,11 @@ module.exports = (env) => {
     module: {
       rules: [
         {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
+        {
           test: /\.js?$/,
           exclude: /(node_modules)/,
           include: path.resolve(__dirname, 'src'),
@@ -27,6 +32,9 @@ module.exports = (env) => {
           },
         },
       ],
+    },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: [
       new CleanWebpackPlugin(),

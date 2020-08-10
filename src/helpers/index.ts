@@ -1,6 +1,6 @@
-import { getVariables } from '../common';
+import { getVariables } from '../common/index';
 
-export const fetchFactory = (url, settings = {}) => {
+export const fetchFactory = (url: string, settings = {} as RequestInit) => {
   const { BASE_URL, API_KEY, APP_ID } = getVariables();
 
   return fetch(`${BASE_URL}${url}`, {
@@ -15,14 +15,14 @@ export const fetchFactory = (url, settings = {}) => {
   });
 };
 
-export const handleErrors = (response) => {
+export const handleErrors = (response: Response) => {
   if (!response.ok) {
     return response.json().then((res) => Promise.reject(res.message));
   }
   return response;
 };
 
-export const urlBase64ToUint8Array = (base64String) => {
+export const urlBase64ToUint8Array = (base64String: string) => {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
 
@@ -38,7 +38,7 @@ export const urlBase64ToUint8Array = (base64String) => {
 export const onURLChange = (() => {
   let currentURL = window.location.href;
   let oldURL = currentURL;
-  const callbacks = [];
+  const callbacks: ((url: string) => void)[] = [];
 
   setInterval(function () {
     currentURL = window.location.href;
@@ -50,7 +50,7 @@ export const onURLChange = (() => {
     }
   }, 500);
 
-  return (cb) => {
+  return (cb: (url: string) => void) => {
     callbacks.push(cb);
   };
 })();
