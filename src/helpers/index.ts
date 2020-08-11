@@ -1,15 +1,13 @@
 import { getVariables } from '../common/index';
 
 export const fetchFactory = (url: string, settings = {} as RequestInit) => {
-  const { BASE_URL, API_KEY, APP_ID } = getVariables();
+  const { BASE_URL } = getVariables();
 
   return fetch(`${BASE_URL}${url}`, {
     credentials: 'include',
     ...settings,
     headers: {
       'Content-Type': 'application/json',
-      'X-API-KEY': API_KEY,
-      'X-DEVINO-APP-ID': APP_ID,
       ...settings.headers,
     },
   });
