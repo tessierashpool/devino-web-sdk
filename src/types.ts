@@ -6,7 +6,7 @@ export interface CustomerData {
 }
 
 export interface CustomerSubscribeParams {
-  subscribtionChannel: string;
+  subscriptionChannel: string;
   subscribed: boolean;
 }
 
