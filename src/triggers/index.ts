@@ -46,13 +46,13 @@ export const updateCustomerData = ({
  * @returns {Promise}
  */
 export const customerSubscribe = ({
-  subscribtionChannel,
+  subscriptionChannel,
   subscribed,
 }: CustomerSubscribeParams): Promise<any> => {
   return fetchFactory('/customers/subscription', {
     method: 'PUT',
     body: JSON.stringify({
-      subscribtionChannel,
+      subscriptionChannel,
       subscribed,
       reportedDateTimeUtc: new Date(),
     }),
@@ -77,7 +77,7 @@ export const customerSubscribe = ({
  * @returns {Promise}
  */
 export const sendEvent = ({ eventName, eventData = {} }: SendEventeParams): Promise<any> => {
-  return fetchFactory('/users/event', {
+  return fetchFactory('/customers/event', {
     method: 'POST',
     body: JSON.stringify({
       eventName,
