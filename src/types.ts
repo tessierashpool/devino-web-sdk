@@ -15,8 +15,6 @@ export interface SendEventeParams {
   eventData: object;
 }
 export interface InitParams {
-  apiKey: string;
-  appId: string;
   baseUrl?: string;
   isServiceWorker?: boolean;
 }
